@@ -221,12 +221,14 @@ public class WiFiHandler {
      */
     public WifiConfiguration createConfiguration(AccessPoint ap) {
         String SSID = ap.getSsid();
+        Log.d("WIFIX","create a config for " + SSID);
         WifiConfiguration config = new WifiConfiguration();
         config.SSID = "\"" + SSID + "\"";
 
         String encryptionType = ap.getEncryptionType();
         String password = ap.getPassword();
-        if (encryptionType.contains("wep")) {
+        if (encryptionType.toLowerCase().contains("wep")) {
+            Log.d("WIFIX","wep");
 //            config.hiddenSSID = false;
             /**
              * special handling according to password length is a must for wep
@@ -243,13 +245,15 @@ public class WiFiHandler {
             config.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
             config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
             config.wepTxKeyIndex = 0;
-        } else if (encryptionType.contains("wpa")) {
+        } else if (encryptionType.toLowerCase().contains("wpa")) {
+            Log.d("WIFIX","wpa");
             config.preSharedKey = "\"" + password + "\"";
 //            config.hiddenSSID = false;
 
             config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
 //            config.status = WifiConfiguration.Status.CURRENT;
         } else {
+            Log.d("WIFIX","open");
             config.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
         }
         return config;
@@ -279,7 +283,7 @@ public class WiFiHandler {
         /**
          * networkId is bigger than 0 in most time, 0 in few time and smaller than 0 in no time
          */
-        int networkId = networkId = wifiManager.addNetwork(config);
+        int networkId = wifiManager.addNetwork(config);
         if (networkId < 0) {
             return false;
         }
