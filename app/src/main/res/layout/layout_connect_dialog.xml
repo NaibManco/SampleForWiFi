@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@null"
+        android:textColor="@android:color/black"
+        android:textCursorDrawable="@color/colorPrimary"/>
+    <View
+        android:layout_below="@id/password"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignLeft="@id/password"
+        android:layout_alignRight="@id/password"/>
+    <TextView
+        android:id="@+id/password_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:text="please input right password"
+        android:visibility="invisible"/>
+</RelativeLayout>
